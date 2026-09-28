@@ -30,3 +30,20 @@ Branches isolate new features or bug fixes from the core codebase. When work is 
 
 **What happens if two people edit the same file on different branches?**
 If two people edit the exact same lines of the same file on different branches and try to merge them into `main`, Git will not overwrite the work automatically. Instead, it flags a "merge conflict." Git halts the process and forces the developers to manually inspect the conflicting lines and decide which version to keep (or how to combine them) before allowing the merge to succeed.
+
+## Advanced Git Commands & When to Use Them
+
+**What does each command do?**
+* `git checkout main -- <file>`: Discards local uncommitted changes in a specific file and replaces it with the clean version from the `main` branch.
+* `git cherry-pick <commit>`: Takes the changes from a single, specific commit on one branch and explicitly applies them to your current branch without merging the rest of the branch.
+* `git log`: Displays the chronological history of commits, including author details, dates, and commit hashes.
+* `git blame <file>`: Shows a line-by-line breakdown of a file, displaying exactly which author last modified each line and in which commit.
+
+**When would you use it in a real project?**
+* `checkout -- <file>`: Essential when you try an experimental refactor in a specific controller or service, realize it's a mess, and just want to reset that single file to safety without losing the good work you did in other files.
+* `cherry-pick`: Extremely important for hotfixes. If someone fixes a critical bug in a development branch, you can cherry-pick *only* that bug-fix commit directly into the production branch without accidentally releasing other unfinished features.
+* `git log`: Crucial for tracking down exactly when a bug was introduced into the codebase.
+* `git blame`: Invaluable in a large team setting. When I find a complex or strange piece of code in a massive backend repository, `git blame` tells me exactly which senior developer wrote it so I can ask them for context before I try to change it.
+
+**What surprised you while testing these commands?**
+I was surprised by how surgically precise Git can be. `git cherry-pick` shows that you don't always have to do massive, messy branch merges; you can literally pluck single commits. Also, `git blame` (despite the aggressive name) is a fantastic collaboration tool that removes the mystery of who authored specific lines in a massive file.
