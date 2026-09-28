@@ -20,3 +20,13 @@ I opened the conflicted file in VS Code. The editor clearly highlighted the conf
 
 **What did you learn?**
 I learned that merge conflicts are a completely normal, expected part of team collaboration, not an "error" to panic over. They are simply Git's safety mechanism to prevent accidental data loss. I also learned that modern IDEs like VS Code make resolving these conflicts highly visual and straightforward.
+## Branching & Team Collaboration
+
+**Why is pushing directly to `main` problematic?**
+Pushing directly to `main` (which usually represents the stable production environment) is highly risky because it bypasses all quality control. If broken, untested, or incomplete code is pushed directly, it can immediately break the application for end-users and disrupt other developers who rely on a stable `main` branch to branch off of.
+
+**How do branches help with reviewing code?**
+Branches isolate new features or bug fixes from the core codebase. When work is complete on a branch, developers open a Pull Request (PR). This creates a dedicated space for other team members to safely read the isolated changes, run automated tests, and suggest improvements before those changes are ever merged into the main project.
+
+**What happens if two people edit the same file on different branches?**
+If two people edit the exact same lines of the same file on different branches and try to merge them into `main`, Git will not overwrite the work automatically. Instead, it flags a "merge conflict." Git halts the process and forces the developers to manually inspect the conflicting lines and decide which version to keep (or how to combine them) before allowing the merge to succeed.
