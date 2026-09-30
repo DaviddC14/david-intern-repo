@@ -47,3 +47,14 @@ If two people edit the exact same lines of the same file on different branches a
 
 **What surprised you while testing these commands?**
 I was surprised by how surgically precise Git can be. `git cherry-pick` shows that you don't always have to do massive, messy branch merges; you can literally pluck single commits. Also, `git blame` (despite the aggressive name) is a fantastic collaboration tool that removes the mystery of who authored specific lines in a massive file.
+
+## Writing Meaningful Commit Messages
+
+**What makes a good commit message?**
+A good commit message is concise, descriptive, and clearly explains *why* a change was made, not just *what* changed. It typically follows a standard convention (like Conventional Commits), starting with a capitalized verb in the imperative mood (e.g., "Add", "Fix", "Update", "Refactor"), followed by a brief summary of the exact change.
+
+**How does a clear commit message help in team collaboration?**
+Clear messages act as asynchronous communication for the entire team. When another developer looks at the project history, a good commit message instantly provides the context and intent behind a code change without them having to read through every modified line of code. It makes code reviews faster, more effective, and helps new team members understand the evolution of the codebase.
+
+**How can poor commit messages cause issues later?**
+Poor messages like "fixed stuff" or "updated files" are practically useless for debugging. If a bug is introduced and the team needs to use tools like `git bisect` or `git blame` to track it down, vague messages make it impossible to know if a commit was related to a UI change, a database migration, or a logic fix without manually inspecting the code. This wastes valuable time and makes resolving production issues much harder.
