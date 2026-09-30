@@ -58,3 +58,14 @@ Clear messages act as asynchronous communication for the entire team. When anoth
 
 **How can poor commit messages cause issues later?**
 Poor messages like "fixed stuff" or "updated files" are practically useless for debugging. If a bug is introduced and the team needs to use tools like `git bisect` or `git blame` to track it down, vague messages make it impossible to know if a commit was related to a UI change, a database migration, or a logic fix without manually inspecting the code. This wastes valuable time and makes resolving production issues much harder.
+
+## Creating & Reviewing Pull Requests
+
+**Why are PRs important in a team workflow?**
+Pull Requests are the fundamental quality control checkpoint in modern development. They prevent developers from blindly pushing unverified code into the production branch. PRs create a space for automated testing (CI/CD pipelines) to run and for senior developers to review the logic, catch bugs, and ensure the code meets the company's standards before it is merged.
+
+**What makes a well-structured PR?**
+A well-structured PR is small, atomic, and focused on solving one specific issue. It includes a clear, descriptive title and a detailed description that explains *what* was changed and *why*. It should always link to the relevant issue tracker (e.g., "Closes #63") so the team has context. If it involves UI changes, attaching screenshots is highly recommended.
+
+**What did you learn from reviewing an open-source PR?**
+By looking at PRs in large open-source projects like React, I learned that communication is just as important as code. Maintainers ask very detailed questions about edge cases and performance impacts. I also noticed that PRs often go through multiple rounds of revisions and feedback before being approved; code review is a collaborative conversation, not a personal attack.
