@@ -47,3 +47,14 @@ If two people edit the exact same lines of the same file on different branches a
 
 **What surprised you while testing these commands?**
 I was surprised by how surgically precise Git can be. `git cherry-pick` shows that you don't always have to do massive, messy branch merges; you can literally pluck single commits. Also, `git blame` (despite the aggressive name) is a fantastic collaboration tool that removes the mystery of who authored specific lines in a massive file.
+
+## Debugging with Git Bisect
+
+**What does `git bisect` do?**
+`git bisect` is a debugging tool that uses a binary search algorithm to find the exact commit that introduced a bug. You tell Git a "bad" commit (usually the current broken state) and a "good" commit (an older state where the code worked). Git then systematically checks out a commit halfway between them, asks you to test if the code is good or bad, and repeats the process until it isolates the exact commit that caused the issue.
+
+**When would you use it in a real-world debugging situation?**
+It is extremely useful in large production projects when a feature silently breaks on `main`, and nobody noticed exactly when it happened. If there are hundreds of commits between the last known working version and the current broken version, `git bisect` helps you track down the responsible commit (and the author) in minutes without guessing.
+
+**How does it compare to manually reviewing commits?**
+Manually reviewing or checking out commits one by one is linear and incredibly slow ($O(n)$). If you have 1,000 commits to check, it could take up to 1,000 steps. Because `git bisect` uses binary search ($O(\log n)$), it cuts the number of commits to check in half every time. It can find a bug among 1,000 commits in roughly 10 steps, making it vastly superior and mathematically more efficient for tracking down complex bugs.
